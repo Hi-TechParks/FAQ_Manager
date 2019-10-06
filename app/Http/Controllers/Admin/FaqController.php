@@ -4,9 +4,12 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\SendMailable;
 use App\Faq;
 use App\FaqCategory;
 use App\Location;
+use App\Setting;
 use Carbon\Carbon;
 use Session;
 use Image;
@@ -234,5 +237,49 @@ class FaqController extends Controller
         Session::flash('success', $this->title.' Deleted Successfully!');
 
         return redirect()->back();
+    }
+
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function sendMail(Request $request, $id)
+    {
+
+        $settings = Setting::where('status', '1')->get();
+
+        if(count($settings) == 1){
+
+            foreach ($settings as $setting ){
+                $maildata['appMail'] = $setting->contact_mail;
+                $maildata['appName'] = $setting->title;
+            }
+
+            // Passing data to email template
+            $data = Faq::find($id);
+
+            $maildata['name'] = $data->asked_by;
+            $maildata['email'] = $data->email;
+            $maildata['subject'] = $data->question;
+
+            // Send Mail
+            Mail::send(new SendMailable($maildata));
+
+            $data->mail = '1';
+            $data->save();
+
+            
+            Session::flash('success', 'Mail Send Successfully!');
+
+        }
+        else{
+            Session::flash('error', 'Receiver not configured!');
+        }
+
+        return redirect()->back();
+
     }
 }

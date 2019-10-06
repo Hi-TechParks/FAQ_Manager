@@ -31,6 +31,19 @@
                 <div class="card-body">
                   <h4 class="header-title">Reject {{ $title }} List</h4>
 
+                   <!-- ===  Text Shorten Code  ====  -->
+                   <?php
+                     // code for shortening the big content fetched from database
+                      function textShorten($text, $limit = 40){
+                         $text = $text." ";
+                         $text = substr($text, 0, $limit);
+                         $text = substr($text, 0, strrpos($text, " "));
+                         $text = $text;
+                         return $text;
+                     }
+                   ?> 
+                   <!-- ===  Text Shorten Code  ====  -->
+
                   <!-- Data Table Start -->
                   <div class="table-responsive">
                     <table id="basic-datatable" class="table table-striped table-hover table-dark nowrap" style="width:100%">
@@ -41,7 +54,6 @@
                                 <th>Category</th>
                                 <th>Location</th>
                                 <th>Asked By</th>
-                                <th>Email</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -49,11 +61,13 @@
                           @foreach( $rows as $key => $row )
                             <tr>
                                 <td>{{ $key + 1 }}</td>
-                                <td>{{ $row->question }}</td>
+                                <td>
+                                    {{ textShorten($row->question) }}
+                                    @if(strlen($row->question) > 40)...@endif
+                                </td>
                                 <td>{{ $row->category->title }}</td>
                                 <td>{{ $row->location->title }}</td>
                                 <td>{{ $row->asked_by }}</td>
-                                <td>{{ $row->email }}</td>
                                 <td>
                                     @if( $row->status == 1 )
                                     <span class="badge badge-success badge-pill">Active</span>

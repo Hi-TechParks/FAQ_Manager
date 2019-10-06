@@ -75,6 +75,7 @@ Route::group(['prefix' => 'admin',  'middleware' => 'auth'], function()
     Route::get('faq/reject', 'Admin\FaqController@reject')->name('faq.reject');
     Route::put('faq/{id}', 'Admin\FaqController@update')->name('faq.update');
     Route::delete('faq/{id}', 'Admin\FaqController@destroy')->name('faq.destroy');
+    Route::get('faq/sendMail/{id}', 'Admin\FaqController@sendMail')->name('faq.sendMail');
 
     // Setting Routes
     Route::get('setting', 'Admin\SettingController@index')->name('setting.index');
