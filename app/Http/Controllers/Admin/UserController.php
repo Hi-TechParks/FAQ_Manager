@@ -6,8 +6,12 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Spatie\Permission\Models\Role;
 use App\User;
-use DB;
+use App\Location;
+use App\FaqCategory;
+use Session;
 use Hash;
+use Auth;
+use DB;
 
 class UserController extends Controller
 {
@@ -38,11 +42,13 @@ class UserController extends Controller
         $rows = User::orderBy('id','desc')->get();
 
         $roles = Role::all();
+        $locations = Location::where('status', '1')->orderBy('title', 'asc')->get();
+        $categories = FaqCategory::where('status', '1')->orderBy('title', 'asc')->get();
 
         $title = $this->title;
         $url = $this->url;
 
-        return view('admin.'.$url.'.index',compact('rows', 'roles', 'title', 'url'));
+        return view('admin.'.$url.'.index',compact('rows', 'roles', 'locations', 'categories', 'title', 'url'));
     }
 
     /**
@@ -70,7 +76,9 @@ class UserController extends Controller
             'name' => 'required',
             'email' => 'required|email|unique:users,email',
             'password' => 'required|same:confirm-password',
-            'roles' => 'required'
+            'roles' => 'required',
+            'locations' => 'required',
+            'categories' => 'required',
         ]);
 
 
@@ -80,6 +88,11 @@ class UserController extends Controller
         $user = User::create($input);
 
         $user->assignRole($request->input('roles'));
+
+        // Insert Locations
+        $user->locations()->attach($request->locations);
+        // Insert Categories
+        $user->categories()->attach($request->categories);
 
         return redirect()->route('user.index')
                         ->with('success','User created successfully');
@@ -127,7 +140,9 @@ class UserController extends Controller
     {
         $this->validate($request, [
             'name' => 'required',
-            'roles' => 'required'
+            'roles' => 'required',
+            'locations' => 'required',
+            'categories' => 'required',
         ]);
 
 
@@ -139,6 +154,11 @@ class UserController extends Controller
         DB::table('model_has_roles')->where('model_id',$id)->delete();
 
         $user->assignRole($request->input('roles'));
+
+        // Update Locations
+        $user->locations()->sync($request->locations);
+        // Update Categories
+        $user->categories()->sync($request->categories);
 
         return redirect()->route('user.index')
                         ->with('success','User updated successfully');
@@ -152,9 +172,17 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        User::find($id)->delete();
+        $data = User::find($id);
+        if( $data->id == Auth::user()->id ){
 
-        return redirect()->route('user.index')
-                        ->with('success','User deleted successfully');
+            Session::flash('error', 'You are not permitted delete this!');
+            return redirect()->back();
+        }
+        else{
+            
+            $data->delete();
+            return redirect()->route('user.index')
+                            ->with('success','User deleted successfully');
+        }
     }
 }

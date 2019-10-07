@@ -12,4 +12,10 @@ class Location extends Model
     {
     	return $this->hasMany('App\Faq', 'location_id', 'id');
     }
+
+    public function users()
+    {
+        return $this->belongsToMany('App\User', 'user_locations', 
+          'location_id', 'user_id');
+    }
 }

@@ -15,13 +15,6 @@
 Route::get('/', 'HomeController@index')->name('home');
 
 
-/*Route::group(['middleware' => ['auth']], function() {
-    Route::resource('roles','RoleController');
-    Route::resource('users','UserController');
-    Route::resource('products','ProductController');
-});*/
-
-
 // Faq Routes
 Route::get('/faqs', 'FaqsController@index');
 Route::get('/faq/category/{id}', 'FaqsController@category');
@@ -62,6 +55,9 @@ Route::group(['prefix' => 'admin',  'middleware' => 'auth'], function()
     Route::resource('role','Admin\RoleController');
     Route::resource('user','Admin\UserController');
     Route::resource('products','Admin\ProductController');
+
+    // Profile Route
+    Route::resource('profile', 'Admin\ProfileController');
 
     // Admin Routes
 	Route::resource('faq-category', 'Admin\FaqCategoryController');

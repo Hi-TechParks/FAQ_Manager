@@ -38,4 +38,17 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+
+    public function locations()
+    {
+        return $this->belongsToMany('App\Location', 'user_locations', 
+          'user_id', 'location_id');
+    }
+
+    public function categories()
+    {
+        return $this->belongsToMany('App\FaqCategory', 'user_categories', 
+          'user_id', 'category_id');
+    }
 }

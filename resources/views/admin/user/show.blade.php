@@ -20,6 +20,16 @@
                             @endforeach
                         @endif
                     </p>
+                    <p><span class="text-highlight">Locations:</span> 
+                        @foreach( $row->locations as $user_loc )
+                            <label class="badge badge-primary">{{ $user_loc->title }}</label>
+                        @endforeach
+                    </p>
+                    <p><span class="text-highlight">Categories:</span> 
+                        @foreach( $row->categories as $user_cat )
+                            <label class="badge badge-info">{{ $user_cat->title }}</label>
+                        @endforeach
+                    </p>
                     <!-- Details View End -->
                 </div>
                 <div class="modal-footer">

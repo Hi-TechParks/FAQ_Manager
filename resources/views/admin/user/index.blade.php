@@ -46,6 +46,8 @@
                                 <th>Name</th>
                                 <th>Email</th>
                                 <th>Role</th>
+                                <th>Location</th>
+                                <th>Category</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -67,6 +69,16 @@
                                   @endif
                                 </td>
                                 <td>
+                                    @foreach( $row->locations as $user_loc )
+                                        <label class="badge badge-primary">{{ $user_loc->title }}</label>
+                                    @endforeach
+                                </td>
+                                <td>
+                                    @foreach( $row->categories as $user_cat )
+                                        <label class="badge badge-info">{{ $user_cat->title }}</label>
+                                    @endforeach
+                                </td>
+                                <td>
                                     <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#showModal-{{ $row->id }}">
                                         <i class="fas fa-eye"></i>
                                     </button>
@@ -82,11 +94,13 @@
                                     @endcan
 
                                     @can('user-delete')
+                                    @if($row->id != Auth::user()->id)
                                     <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#deleteModal-{{ $row->id }}">
                                         <i class="fas fa-trash-alt"></i>
                                     </button>
                                     <!-- Include Delete modal -->
                                     @include('admin.inc.delete')
+                                    @endif
                                     @endcan
                                 </td>
                             </tr>

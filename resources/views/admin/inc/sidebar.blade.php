@@ -68,6 +68,13 @@
         </li>
         @endcan
 
+        <li>
+            <a href="{{ URL::route('profile.index') }}">
+                <span class="icon"><i class="far fa-address-card"></i></span>
+                <span> Profile Setup </span>
+            </a>
+        </li>
+
         @can('setting-all')
         <li>
             <a href="{{ URL::route('setting.index') }}">

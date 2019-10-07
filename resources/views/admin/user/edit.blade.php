@@ -51,6 +51,52 @@
                           Please Select User Role.
                         </div>
                     </div>
+
+                    <div class="form-group">
+                        <label for="locations-{{ $row->id }}">Select Location</label>
+                        <select class="select2 form-control select2-multiple" data-toggle="select2" multiple="multiple" data-placeholder="Choose ..." name="locations[]" style="width: 100%" id="locations-{{ $row->id }}" required>
+                            @foreach( $locations as $location )
+                            <option value="{{ $location->id }}"
+                                @if(!empty($row->locations))
+                                    @foreach( $row->locations as $user_loc )
+                                        @if( $location->id == $user_loc->id )
+                                            selected
+                                        @endif
+                                    @endforeach
+                                @endif
+                            >
+                                {{ $location->title }}
+                            </option>
+                            @endforeach
+                        </select>
+
+                        <div class="invalid-feedback">
+                          Please Select Location Permit.
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="categories-{{ $row->id }}">Select Category</label>
+                        <select class="select2 form-control select2-multiple" data-toggle="select2" multiple="multiple" data-placeholder="Choose ..." name="categories[]" style="width: 100%" id="categories-{{ $row->id }}" required>
+                            @foreach( $categories as $category )
+                            <option value="{{ $category->id }}"
+                                @if(!empty($row->categories))
+                                    @foreach( $row->categories as $user_cat )
+                                        @if( $category->id == $user_cat->id )
+                                            selected
+                                        @endif
+                                    @endforeach
+                                @endif
+                            >
+                                {{ $category->title }}
+                            </option>
+                            @endforeach
+                        </select>
+
+                        <div class="invalid-feedback">
+                          Please Select Category Permit.
+                        </div>
+                    </div>
                     <!-- Form End -->
                 </div>
                 <div class="modal-footer">

@@ -59,6 +59,32 @@
                           Please Select User Role.
                         </div>
                     </div>
+
+                    <div class="form-group">
+                        <label for="locations">Select Location</label>
+                        <select name="locations[]"  class="select2 form-control select2-multiple" data-toggle="select2" multiple="multiple" data-placeholder="Choose ..." style="width: 100%" required id="locations">
+                            @foreach($locations as $location)
+                            <option value="{{ $location->id }}">{{ $location->title }}</option>
+                            @endforeach
+                        </select>
+
+                        <div class="invalid-feedback">
+                          Please Select Location Permit.
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="categories">Select Category</label>
+                        <select name="categories[]"  class="select2 form-control select2-multiple" data-toggle="select2" multiple="multiple" data-placeholder="Choose ..." style="width: 100%" required id="categories">
+                            @foreach($categories as $category)
+                            <option value="{{ $category->id }}">{{ $category->title }}</option>
+                            @endforeach
+                        </select>
+
+                        <div class="invalid-feedback">
+                          Please Select Category Permit.
+                        </div>
+                    </div>
                     <!-- Form End -->
                 </div>
                 <div class="modal-footer">

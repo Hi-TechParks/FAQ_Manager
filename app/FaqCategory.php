@@ -12,4 +12,10 @@ class FaqCategory extends Model
     {
     	return $this->hasMany('App\Faq', 'cateogry_id', 'id');
     }
+
+    public function users()
+    {
+        return $this->belongsToMany('App\User', 'user_categories', 
+          'category_id', 'user_id');
+    }
 }

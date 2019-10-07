@@ -100,7 +100,11 @@
 
                             <li class="dropdown notification-list">
                                 <a class="nav-link dropdown-toggle nav-user mr-0" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
+                                    @if(isset(Auth::user()->image))
+                                    <img src="{{ asset('/uploads/profile/'.Auth::user()->image) }}" onerror="this.onerror=null;this.src='/backend/images/users/user.png';" alt="user-image" class="rounded-circle">
+                                    @else
                                     <img src="{{ asset('/backend/images/users/user.png') }}" alt="user-image" class="rounded-circle">
+                                    @endif
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right dropdown-menu-animated profile-dropdown ">
                                     <!-- item-->
