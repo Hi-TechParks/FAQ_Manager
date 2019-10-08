@@ -12,25 +12,31 @@
             </a>
         </li>
 
+        @can('faq-all')
         <li>
             <a href="javascript: void(0);">
-                <span class="icon"><i class="fas fa-question-circle"></i></span>
+                <span class="icon"><i class="far fa-question-circle"></i></span>
                 <span> FAQs List</span>
                 <span class="menu-arrow"></span>
             </a>
             <ul class="nav-second-level" aria-expanded="false">
                 <li>
-                    @can('faq-all')
                     <a href="{{ URL::route('faq.pending') }}">Pending List</a>
                     <a href="{{ URL::route('faq.approve') }}">Approve List</a>
                     <a href="{{ URL::route('faq.reject') }}">Reject List</a>
-                    @endcan
-                    @can('faq-default-all')
-                    <a href="{{ URL::route('faq-default.index') }}">Default FAQ Setup</a>
-                    @endcan
                 </li>
             </ul>
         </li>
+        @endcan
+
+        @can('faq-default-all')
+        <li>
+            <a href="{{ URL::route('faq-default.index') }}">
+                <span class="icon"><i class="fab fa-quora"></i></span>
+                <span> Default FAQ </span>
+            </a>
+        </li>
+        @endcan
 
         @can('category-all')
         <li>

@@ -39,9 +39,25 @@ class FaqDefaultController extends Controller
     public function index()
     {
         //
-        $rows = Faq::where('asked_by', '=', Null )->orderBy('id', 'desc')->get();
-        $categories = FaqCategory::where('status', '1')->get();
-        $locations = Location::where('status', '1')->get();
+        $rows = Faq::where('asked_by', '=', Null )
+                    ->leftJoin('user_locations', 'user_locations.location_id', '=', 'faqs.location_id')
+                    ->leftJoin('user_categories', 'user_categories.category_id', '=', 'faqs.category_id')
+                    ->where('user_locations.user_id', Auth::user()->id)
+                    ->where('user_categories.user_id', Auth::user()->id)
+                    ->orderBy('faqs.id', 'desc')
+                    ->get();
+
+        $categories = FaqCategory::leftJoin('user_categories', 'user_categories.category_id', '=', 'faq_categories.id')
+                    ->where('user_categories.user_id', Auth::user()->id)
+                    ->where('faq_categories.status', '1')
+                    ->distinct('faq_categories.id')
+                    ->get();
+
+        $locations = Location::leftJoin('user_locations', 'user_locations.location_id', '=', 'locations.id')
+                    ->where('user_locations.user_id', Auth::user()->id)
+                    ->where('locations.status', '1')
+                    ->distinct('locations.id')
+                    ->get();
 
         $title = $this->title;
         $url = $this->url;

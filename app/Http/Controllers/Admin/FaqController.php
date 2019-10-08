@@ -42,9 +42,13 @@ class FaqController extends Controller
     public function pending()
     {
         //
-        $rows = Faq::where('asked_by', '!=', Null)
-                    ->where('status', '2')
-                    ->orderBy('id', 'desc')
+        $rows = Faq::where('faqs.asked_by', '!=', Null)
+                    ->where('faqs.status', '2')
+                    ->leftJoin('user_locations', 'user_locations.location_id', '=', 'faqs.location_id')
+                    ->leftJoin('user_categories', 'user_categories.category_id', '=', 'faqs.category_id')
+                    ->where('user_locations.user_id', Auth::user()->id)
+                    ->where('user_categories.user_id', Auth::user()->id)
+                    ->orderBy('faqs.id', 'desc')
                     ->get();
 
         $categories = FaqCategory::where('status', '1')->get();
@@ -65,8 +69,12 @@ class FaqController extends Controller
     {
         //
         $rows = Faq::where('asked_by', '!=', Null)
-                    ->where('status', '1')
-                    ->orderBy('id', 'desc')
+                    ->where('faqs.status', '1')
+                    ->leftJoin('user_locations', 'user_locations.location_id', '=', 'faqs.location_id')
+                    ->leftJoin('user_categories', 'user_categories.category_id', '=', 'faqs.category_id')
+                    ->where('user_locations.user_id', Auth::user()->id)
+                    ->where('user_categories.user_id', Auth::user()->id)
+                    ->orderBy('faqs.id', 'desc')
                     ->get();
 
         $categories = FaqCategory::where('status', '1')->get();
@@ -87,8 +95,12 @@ class FaqController extends Controller
     {
         //
         $rows = Faq::where('asked_by', '!=', Null)
-                    ->where('status', '0')
-                    ->orderBy('id', 'desc')
+                    ->where('faqs.status', '0')
+                    ->leftJoin('user_locations', 'user_locations.location_id', '=', 'faqs.location_id')
+                    ->leftJoin('user_categories', 'user_categories.category_id', '=', 'faqs.category_id')
+                    ->where('user_locations.user_id', Auth::user()->id)
+                    ->where('user_categories.user_id', Auth::user()->id)
+                    ->orderBy('faqs.id', 'desc')
                     ->get();
 
         $categories = FaqCategory::where('status', '1')->get();
