@@ -229,36 +229,16 @@
                                             <!--[if mso]><table width="100%" cellpadding="0" cellspacing="0" border="0"><tr><td style="padding-right: 10px; padding-left: 10px; padding-top: 15px; padding-bottom: 10px; font-family: Arial, sans-serif"><![endif]-->
                                             <div style="color:#555555;font-family:Arial, 'Helvetica Neue', Helvetica, sans-serif;line-height:1.5;padding-top:15px;padding-right:10px;padding-bottom:10px;padding-left:10px;">
                                                 <div style="font-size: 12px; line-height: 1.5; font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif; color: #555555; mso-line-height-alt: 18px;">
-                                                    <p style="font-size: 17px; line-height: 1.5; text-align: left; mso-line-height-alt: 26px; mso-ansi-font-size: 18px; margin: 0;"><span style="font-size: 17px; mso-ansi-font-size: 18px;">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus ac turpis tincidunt, convallis lorem consectetur, varius ipsum. Quisque mauris sem, tempus sit amet massa ac, efficitur tristique turpis. Aliquam maximus aliquam odio non facilisis. Mauris pellentesque blandit posuere.</span></p>
+                                                    <p style="font-size: 17px; line-height: 1.5; text-align: left; mso-line-height-alt: 26px; mso-ansi-font-size: 18px; margin: 0;"><span style="font-size: 17px; mso-ansi-font-size: 18px;">
+                                                        <strong>Get New Question</strong> : {{ $maildata['question'] }}
+                                                    </span></p>
                                                     <p style="font-size: 14px; line-height: 1.5; text-align: left; mso-line-height-alt: 21px; margin: 0;"> </p>
-                                                    <p style="font-size: 17px; line-height: 1.5; text-align: left; mso-line-height-alt: 26px; mso-ansi-font-size: 18px; margin: 0;"><span style="font-size: 17px; mso-ansi-font-size: 18px;">Donec rutrum, risus vitae aliquet fringilla, velit ligula placerat ligula, eget dapibus velit lacus et nibh. Nulla non lorem eget erat iaculis egestas a sed felis. Ut nec semper nisi. Cras in hendrerit lorem. Integer iaculis ex diam.</span></p>
+                                                    <p style="font-size: 17px; line-height: 1.5; text-align: left; mso-line-height-alt: 26px; mso-ansi-font-size: 18px; margin: 0;"><span style="font-size: 17px; mso-ansi-font-size: 18px;">
+                                                        <strong>Ask By</strong> : {{ $maildata['name'] }}
+                                                    </span></p>
                                                 </div>
                                             </div>
                                             <!--[if mso]></td></tr></table><![endif]-->
-                                            <!--[if (!mso)&(!IE)]><!-->
-                                        </div>
-                                        <!--<![endif]-->
-                                    </div>
-                                </div>
-                                <!--[if (mso)|(IE)]></td></tr></table><![endif]-->
-                                <!--[if (mso)|(IE)]></td></tr></table></td></tr></table><![endif]-->
-                            </div>
-                        </div>
-                    </div>
-                    <div style="background-color:transparent;">
-                        <div class="block-grid" style="Margin: 0 auto; min-width: 320px; max-width: 650px; overflow-wrap: break-word; word-wrap: break-word; word-break: break-word; background-color: #FFFFFF;">
-                            <div style="border-collapse: collapse;display: table;width: 100%;background-color:#FFFFFF;">
-                                <!--[if (mso)|(IE)]><table width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color:transparent;"><tr><td align="center"><table cellpadding="0" cellspacing="0" border="0" style="width:650px"><tr class="layout-full-width" style="background-color:#FFFFFF"><![endif]-->
-                                <!--[if (mso)|(IE)]><td align="center" width="650" style="background-color:#FFFFFF;width:650px; border-top: 0px solid transparent; border-left: 8px solid #F1F3F3; border-bottom: 0px solid transparent; border-right: 8px solid #F1F3F3;" valign="top"><table width="100%" cellpadding="0" cellspacing="0" border="0"><tr><td style="padding-right: 0px; padding-left: 0px; padding-top:0px; padding-bottom:45px;"><![endif]-->
-                                <div class="col num12" style="min-width: 320px; max-width: 650px; display: table-cell; vertical-align: top; width: 634px;">
-                                    <div style="width:100% !important;">
-                                        <!--[if (!mso)&(!IE)]><!-->
-                                        <div style="border-top:0px solid transparent; border-left:8px solid #F1F3F3; border-bottom:0px solid transparent; border-right:8px solid #F1F3F3; padding-top:0px; padding-bottom:45px; padding-right: 0px; padding-left: 0px;">
-                                            <!--<![endif]-->
-                                            <div align="left" class="img-container left fixedwidth" style="padding-right: 0px;padding-left: 50px;">
-                                                <!--[if mso]><table width="100%" cellpadding="0" cellspacing="0" border="0"><tr style="line-height:0px"><td style="padding-right: 0px;padding-left: 50px;" align="left"><![endif]--><img alt="Image" border="0" class="left fixedwidth" src="{{ asset('/emails/firm.gif') }}" style="text-decoration: none; -ms-interpolation-mode: bicubic; border: 0; height: auto; width: 100%; max-width: 348px; display: block;" title="Image" width="348" />
-                                                <!--[if mso]></td></tr></table><![endif]-->
-                                            </div>
                                             <!--[if (!mso)&(!IE)]><!-->
                                         </div>
                                         <!--<![endif]-->
@@ -291,7 +271,7 @@
                                             <!--[if mso]><table width="100%" cellpadding="0" cellspacing="0" border="0"><tr><td style="padding-right: 10px; padding-left: 10px; padding-top: 10px; padding-bottom: 0px; font-family: Arial, sans-serif"><![endif]-->
                                             <div style="color:#353535;font-family:Arial, 'Helvetica Neue', Helvetica, sans-serif;line-height:1.2;padding-top:10px;padding-right:10px;padding-bottom:0px;padding-left:10px;">
                                                 <div style="font-size: 12px; line-height: 1.2; font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif; color: #353535; mso-line-height-alt: 14px;">
-                                                    <p style="font-size: 14px; line-height: 1.2; text-align: center; mso-line-height-alt: 17px; margin: 0;"><strong>SHARE</strong></p>
+                                                    <p style="font-size: 14px; line-height: 1.2; text-align: center; mso-line-height-alt: 17px; margin: 0;"><strong>Follow Us</strong></p>
                                                 </div>
                                             </div>
                                             <!--[if mso]></td></tr></table><![endif]-->

@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Mail;
-use App\Mail\SendMailable;
+use App\Mail\ReplyToVisitor;
 use App\Faq;
 use App\FaqCategory;
 use App\Location;
@@ -275,10 +275,12 @@ class FaqController extends Controller
 
             $maildata['name'] = $data->asked_by;
             $maildata['email'] = $data->email;
-            $maildata['subject'] = $data->question;
+            $maildata['subject'] = 'Reply From : '.$setting->title;
+            $maildata['question'] = $data->question;
+            $maildata['answer'] = $data->answer;
 
             // Send Mail
-            Mail::send(new SendMailable($maildata));
+            Mail::send(new ReplyToVisitor($maildata));
 
             $data->mail = '1';
             $data->save();

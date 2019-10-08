@@ -4,11 +4,13 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
-use App\Mail\SendMailable;
+use App\Mail\NotifyToVisitor;
+use App\Mail\NotifyToAdmin;
 use App\Setting;
 use App\Faq;
 use App\FaqCategory;
 use App\Location;
+use App\User;
 use Session;
 
 class AskController extends Controller
@@ -69,26 +71,30 @@ class AskController extends Controller
             // Passing data to email template
             $maildata['name'] = $request->name;
             $maildata['email'] = $request->email;
-            $maildata['subject'] = $request->question;
+            $maildata['subject'] = 'Notify From : '.$setting->title;
+            $maildata['question'] = $request->question;
 
-            // Send Mail
-            Mail::send(new SendMailable($maildata));
-
-            
-            // Mail Information
-            /*$senderName = $request->name;;
-            $sendFrom = $request->email;
-            $subject = $request->question;*/
+            // Send Mail to Visitor
+            Mail::send(new NotifyToVisitor($maildata));
 
 
-            /*Mail::send('emails.email', $data, function($message) use ($sendTo, $senderName, $sendFrom, $appName, $subject) {
+            // Find Author
+            $users = User::join('user_locations', 'user_locations.user_id', '=', 'users.id')
+                    ->join('user_categories', 'user_categories.user_id', '=', 'users.id')
+                    ->where('user_locations.location_id', $request->location)
+                    ->where('user_categories.category_id', $request->category)
+                    ->get();
 
-                // Mail Information
-                $message->from($sendFrom, $senderName);
-                $message->to($sendTo, $appName)
-                        ->subject($subject);
+            foreach( $users as $user ){
 
-            });*/
+                // Passing data to email template
+                $maildata['adminName'] = $user->name;
+                $maildata['adminEmail'] = $user->email;
+                $maildata['adminSubject'] = 'Get Question : '.$setting->title;
+
+                // Send Mail to Admins
+                Mail::send(new NotifyToAdmin($maildata));
+            }
 
             
             Session::flash('success', 'Mail Send Successfully!');
@@ -97,8 +103,6 @@ class AskController extends Controller
         else{
             Session::flash('error', 'Receiver not configured!');
         }
-
-        
 
         return redirect()->back();
 

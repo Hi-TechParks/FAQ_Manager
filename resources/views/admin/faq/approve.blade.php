@@ -73,7 +73,7 @@
                                     @if($row->mail == '0')
                                     <a href="{{ route('faq.sendMail', [$row->id]) }}" class="btn btn-sm btn-primary">Send Mail</a>
                                     @else
-                                    <a href="{{ route('faq.sendMail', [$row->id]) }}" class="btn btn-sm btn-success">Sended</a>
+                                    <a href="{{ route('faq.sendMail', [$row->id]) }}" class="btn btn-sm btn-success">Mailed</a>
                                     @endif
                                 </td>
                                 <td>
