@@ -22,6 +22,7 @@ class CreateLocationsTable extends Migration
             $table->text('meta_keyword')->nullable();
             $table->text('meta_desc')->nullable();
             $table->bigInteger('views')->default('0');
+            $table->integer('home_flag')->nullable();
             $table->integer('status')->nullable();
             $table->bigInteger('created_by')->nullable();
             $table->bigInteger('updated_by')->nullable();

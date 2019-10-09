@@ -21,12 +21,11 @@ class CreateFaqsTable extends Migration
             $table->text('question')->nullable();
             $table->text('answer')->nullable();
             $table->string('image', 500)->nullable();
-            $table->string('ref_url', 500)->nullable();
             $table->text('video_id')->nullable();
             $table->string('asked_by')->nullable();
             $table->string('email')->nullable();
-            $table->bigInteger('views')->nullable();
-            $table->bigInteger('likes')->nullable();
+            $table->bigInteger('views')->default('0');
+            $table->bigInteger('likes')->default('0');
             $table->integer('mail')->default('0');
             $table->integer('status')->nullable();
             $table->bigInteger('created_by')->nullable();

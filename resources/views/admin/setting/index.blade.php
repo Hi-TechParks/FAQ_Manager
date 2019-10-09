@@ -51,11 +51,6 @@
                             Social Info
                         </a>
                     </li>
-                    <li class="nav-item">
-                        <a href="#password-tab" data-toggle="tab" aria-expanded="false" class="nav-link">
-                            Change Password
-                        </a>
-                    </li>
                   </ul>
                   <div class="tab-content">
                     <div class="tab-pane show active" id="website-tab">
@@ -163,7 +158,7 @@
 
                         <div class="form-group">
                             <label for="about_details">About Us Details <span>*</span></label>
-                            <textarea class="form-control summernote" name="about_details" id="about_details" rows="4">{{ isset($row->about_details)?$row->about_details:'' }}</textarea>
+                            <textarea class="form-control summernote" name="about_details" id="about_details" rows="4" required>{{ isset($row->about_details)?$row->about_details:'' }}</textarea>
 
                             <div class="invalid-feedback">
                               Please Provide About Us Details.
@@ -321,68 +316,6 @@
 
                         <div class="form-group">
                             <button type="submit" class="btn btn-primary">Save Changes</button>
-                        </div>
-
-                      </form>
-                      <!-- Form End -->
-
-                    </div>
-                    <div class="tab-pane" id="password-tab">
-                        
-                      <!-- Form Start -->
-                      <form class="needs-validation" novalidate action="{{ URL::route($url.'.changepass') }}" method="post" enctype="multipart/form-data">
-                        @csrf
-
-                        <div class="form-group row">
-                            <label for="password" class="col-md-4 col-form-label text-md-right">Old Password</label>
-
-                            <div class="col-md-6">
-                                <input id="old_password" type="password" class="form-control @error('old_password') is-invalid @enderror" name="old_password" required autocomplete="old_password">
-
-                                @error('password')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-
-                                <div class="invalid-feedback">
-                                  Please Provide Your Old Password.
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="password" class="col-md-4 col-form-label text-md-right">New Password</label>
-
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
-
-                                @error('password')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-
-                                <div class="invalid-feedback">
-                                  Please Provide A New Password.
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="password-confirm" class="col-md-4 col-form-label text-md-right">Confirm Password</label>
-
-                            <div class="col-md-6">
-                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
-                            </div>
-
-                            <div class="invalid-feedback">
-                                Please Confirm Your New Password.
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <button type="submit" class="btn btn-primary">Change</button>
                         </div>
 
                       </form>

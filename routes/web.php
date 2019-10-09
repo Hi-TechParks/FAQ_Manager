@@ -77,7 +77,7 @@ Route::group(['prefix' => 'admin',  'middleware' => 'auth'], function()
     Route::get('setting', 'Admin\SettingController@index')->name('setting.index');
     Route::post('siteinfo', 'Admin\SettingController@siteInfo')->name('setting.siteinfo');
     Route::post('contactinfo', 'Admin\SettingController@contactInfo')->name('setting.contactinfo');
-    Route::post('changepass', 'Admin\SettingController@changePass')->name('setting.changepass');
     Route::post('socialinfo', 'Admin\SettingController@socialInfo')->name('setting.socialinfo');
     Route::post('aboutus', 'Admin\SettingController@aboutUs')->name('setting.aboutus');
+    Route::post('changepass', 'Admin\SettingController@changePass')->name('profile.changepass');
 });
