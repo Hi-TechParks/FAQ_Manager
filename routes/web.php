@@ -30,9 +30,9 @@ Route::get('/search/category', 'SearchController@category')->name('category');
 
 // Contact Route
 Route::get('/ask', 'AskController@index');
-Route::post('/ask', 'AskController@sendMail');
+Route::post('/ask', 'AskController@sendMail')->name('ask.sendMail');
 Route::get('/contact', 'ContactController@index');
-Route::post('/contact', 'ContactController@sendMail');
+Route::post('/contact', 'ContactController@sendMail')->name('contact.sendMail');
 
 
 route::get('/email', function(){
@@ -41,8 +41,8 @@ route::get('/email', function(){
 
 
 // Auth Routes
-Auth::routes();
-// Auth::routes(['register' => false]);
+// Auth::routes();
+Auth::routes(['register' => false]);
 
 // Admin Routes
 Route::group(['prefix' => 'admin',  'middleware' => 'auth'], function()
@@ -69,10 +69,10 @@ Route::group(['prefix' => 'admin',  'middleware' => 'auth'], function()
     Route::get('faq/approve', 'Admin\FaqController@approve')->name('faq.approve');
     Route::get('faq/pending', 'Admin\FaqController@pending')->name('faq.pending');
     Route::get('faq/reject', 'Admin\FaqController@reject')->name('faq.reject');
-    Route::get('faq/{id}', 'Admin\FaqController@edit')->name('faq.edit');
+    Route::get('faq/{id}/{status}', 'Admin\FaqController@edit')->name('faq.edit');
     Route::put('faq/{id}', 'Admin\FaqController@update')->name('faq.update');
     Route::delete('faq/{id}', 'Admin\FaqController@destroy')->name('faq.destroy');
-    Route::get('faq/sendMail/{id}', 'Admin\FaqController@sendMail')->name('faq.sendMail');
+    Route::get('faq/sendMail/{id}/{status}', 'Admin\FaqController@sendMail')->name('faq.sendMail');
     Route::get('faq/back', 'Admin\FaqController@back')->name('faq.back');
 
     // Setting Routes

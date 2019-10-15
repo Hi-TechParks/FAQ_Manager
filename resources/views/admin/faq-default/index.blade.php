@@ -13,7 +13,7 @@
 
     <div class="row">
         <div class="col-12">
-            <a href="{{ URL::route($url.'.index') }}" class="btn btn-info">Create</a>
+            <a href="{{ URL::route($url.'.index') }}" class="btn btn-info">Refresh</a>
         </div>
     </div>
 

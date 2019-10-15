@@ -59,7 +59,7 @@ class FaqController extends Controller
 
         $status = 'pending';
 
-        return view('admin.'.$url.'.approve', compact('rows', 'categories', 'locations', 'title', 'url', 'status'));
+        return view('admin.'.$url.'.index', compact('rows', 'categories', 'locations', 'title', 'url', 'status'));
     }
 
     /**
@@ -87,7 +87,7 @@ class FaqController extends Controller
 
         $status = 'approve';
 
-        return view('admin.'.$url.'.approve', compact('rows', 'categories', 'locations', 'title', 'url', 'status'));
+        return view('admin.'.$url.'.index', compact('rows', 'categories', 'locations', 'title', 'url', 'status'));
     }
 
     /**
@@ -115,7 +115,7 @@ class FaqController extends Controller
 
         $status = 'reject';
 
-        return view('admin.'.$url.'.approve', compact('rows', 'categories', 'locations', 'title', 'url', 'status'));
+        return view('admin.'.$url.'.index', compact('rows', 'categories', 'locations', 'title', 'url', 'status'));
     }
 
     /**
@@ -156,7 +156,7 @@ class FaqController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($id, $status)
     {
         //
         $rows = Faq::where('faqs.asked_by', '!=', Null)
@@ -175,9 +175,9 @@ class FaqController extends Controller
         $title = $this->title;
         $url = $this->url;
 
-        $status = 'edit';
+        $status = $status;
 
-        return view('admin.'.$url.'.approve', compact('rows', 'categories', 'locations', 'data', 'title', 'url', 'status'));
+        return view('admin.'.$url.'.index', compact('rows', 'categories', 'locations', 'data', 'title', 'url', 'status'));
     }
 
     /**

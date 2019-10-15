@@ -13,14 +13,8 @@
 
     <div class="row">
         <div class="col-12">
-            @if($status == 'pending')
-            <a href="{{ URL::route($url.'.pending') }}" class="btn btn-info">Refresh</a>
-            @endif
-            @if($status == 'approve')
-            <a href="{{ URL::route($url.'.approve') }}" class="btn btn-info">Refresh</a>
-            @endif
-            @if($status == 'reject')
-            <a href="{{ URL::route($url.'.reject') }}" class="btn btn-info">Refresh</a>
+            @if(isset($status))
+            <a href="{{ URL::route($url.'.'.$status) }}" class="btn btn-info">View {{ $status }} list</a>
             @endif
         </div>
     </div>
@@ -98,9 +92,9 @@
                                     @if($status == 'approve')
                                     <td>
                                         @if($row->mail == '0')
-                                        <a href="{{ route('faq.sendMail', [$row->id]) }}" class="btn btn-sm btn-primary">Send Mail</a>
+                                        <a href="{{ URL::route('faq.sendMail', ['id'=>$row->id, 'status'=>$status]) }}" class="btn btn-sm btn-primary">Send Mail</a>
                                         @else
-                                        <a href="{{ route('faq.sendMail', [$row->id]) }}" class="btn btn-sm btn-success">Mailed</a>
+                                        <a href="{{ URL::route('faq.sendMail', ['id'=>$row->id, 'status'=>$status]) }}" class="btn btn-sm btn-success">Mailed</a>
                                         @endif
                                     </td>
                                     @endif
@@ -120,7 +114,7 @@
                                         <!-- Include Show modal -->
                                         @include('admin.'.$url.'.show')
 
-                                        <a href="{{ URL::route($url.'.edit', [$row->id]) }}" class="btn btn-primary btn-sm">
+                                        <a href="{{ URL::route($url.'.edit', ['id'=>$row->id, 'status'=>$status]) }}" class="btn btn-primary btn-sm">
                                             <i class="far fa-edit"></i>
                                         </a>
 
