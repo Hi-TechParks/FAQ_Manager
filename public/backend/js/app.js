@@ -140,7 +140,7 @@ function(t) {
 
 // Text Editor Plugin
 $(document).ready(function() {
-	"use strict";
+    "use strict";
     $('.summernote').summernote({
       height: 200,
       toolbar: [
@@ -153,13 +153,30 @@ $(document).ready(function() {
             ["para", ["ul", "ol", "paragraph"]],
             ["table", ["table"]],
             ["insert", ["link"]],
-            //["insert", ["link", "picture", "video"]],
+            //["insert", ["picture", "video"]],
+            //["view", ["fullscreen", "codeview", "help"]],
+            //['height', ['height']]
+        ],
+    });
+
+    $('.textMediaEditor').summernote({
+      height: 200,
+      toolbar: [
+            ["style", ["style"]],
+            ["font", ["bold", "italic", "underline", "clear"]],
+            //["font", ['strikethrough', 'superscript', 'subscript']],
+            ['fontsize', ['fontsize']],
+            ["fontname", ["fontname"]],
+            ["color", ["color"]],
+            ["para", ["ul", "ol", "paragraph"]],
+            ["table", ["table"]],
+            ["insert", ["link"]],
+            ["insert", ["picture", "video"]],
             //["view", ["fullscreen", "codeview", "help"]],
             //['height', ['height']]
         ],
     });
 });
-
 
 // Data Table Init
 $(document).ready(function() {

@@ -116,14 +116,56 @@ class FaqDefaultController extends Controller
         }
 
 
+        // Get content with media file
+        $content=$request->input('answer');
+        
+        $dom = new \DomDocument();
+        libxml_use_internal_errors(true);
+        $dom->loadHtml($content, LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);    
+        $images = $dom->getElementsByTagName('img');
+       // foreach <img> in the submited content
+        foreach($images as $img){
+            $src = $img->getAttribute('src');
+            
+            // if the img source is 'data-url'
+            if(preg_match('/data:image/', $src)){                
+                // get the mimetype
+                preg_match('/data:image\/(?<mime>.*?)\;/', $src, $groups);
+                $mimetype = $groups['mime'];                
+                // Generating a random filename
+                $filename = uniqid().'_'.time();
+
+                //Crete Folder Location
+                $path = public_path('uploads/media/');
+                if (! File::exists($path)) {
+                    File::makeDirectory($path, 0777, true, true);
+                }
+
+                $filepath = "/uploads/media/$filename.$mimetype";    
+                // @see http://image.intervention.io/api/
+                $image = Image::make($src)
+                  // resize if required
+                  //->resize(500, null) 
+                  ->resize(500, null, function ($constraint) {
+                        $constraint->aspectRatio();
+                        $constraint->upsize();
+                    })
+                  ->encode($mimetype, 100)  // encode file to the specified mimetype
+                  ->save(public_path($filepath));                
+                $new_src = asset($filepath);
+                $img->removeAttribute('src');
+                $img->setAttribute('src', $new_src);
+            } // <!--endif
+        } // <!-
+
+
         // Insert Data
         $data = new Faq;
         $data->category_id = $request->category;
         $data->location_id = $request->location;
         $data->question = $request->question;
-        $data->answer = $request->answer;
+        $data->answer = $dom->saveHTML();
         $data->image = $fileNameToStore;
-        $data->ref_url = $request->ref_url;
         $data->video_id = $request->video_id;
         $data->status = 1;
         $data->created_by = Auth::user()->id;
@@ -155,6 +197,32 @@ class FaqDefaultController extends Controller
     public function edit($id)
     {
         //
+        $rows = Faq::where('asked_by', '=', Null )
+                    ->leftJoin('user_locations', 'user_locations.location_id', '=', 'faqs.location_id')
+                    ->leftJoin('user_categories', 'user_categories.category_id', '=', 'faqs.category_id')
+                    ->where('user_locations.user_id', Auth::user()->id)
+                    ->where('user_categories.user_id', Auth::user()->id)
+                    ->orderBy('faqs.id', 'desc')
+                    ->get();
+
+        $categories = FaqCategory::leftJoin('user_categories', 'user_categories.category_id', '=', 'faq_categories.id')
+                    ->where('user_categories.user_id', Auth::user()->id)
+                    ->where('faq_categories.status', '1')
+                    ->distinct('faq_categories.id')
+                    ->get();
+
+        $locations = Location::leftJoin('user_locations', 'user_locations.location_id', '=', 'locations.id')
+                    ->where('user_locations.user_id', Auth::user()->id)
+                    ->where('locations.status', '1')
+                    ->distinct('locations.id')
+                    ->get();
+
+        $data = Faq::find($id);
+
+        $title = $this->title;
+        $url = $this->url;
+
+        return view('admin.'.$url.'.index', compact('rows', 'categories', 'locations', 'data', 'title', 'url'));
     }
 
     /**
@@ -212,14 +280,57 @@ class FaqDefaultController extends Controller
         }
 
 
+
+        // Get content with media file
+        $content=$request->input('answer');
+        
+        $dom = new \DomDocument();
+        libxml_use_internal_errors(true);
+        $dom->loadHtml($content, LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);    
+        $images = $dom->getElementsByTagName('img');
+       // foreach <img> in the submited content
+        foreach($images as $img){
+            $src = $img->getAttribute('src');
+            
+            // if the img source is 'data-url'
+            if(preg_match('/data:image/', $src)){                
+                // get the mimetype
+                preg_match('/data:image\/(?<mime>.*?)\;/', $src, $groups);
+                $mimetype = $groups['mime'];                
+                // Generating a random filename
+                $filename = uniqid().'_'.time();
+
+                //Crete Folder Location
+                $path = public_path('uploads/media/');
+                if (! File::exists($path)) {
+                    File::makeDirectory($path, 0777, true, true);
+                }
+
+                $filepath = "/uploads/media/$filename.$mimetype";    
+                // @see http://image.intervention.io/api/
+                $image = Image::make($src)
+                  // resize if required
+                  //->resize(500, null) 
+                  ->resize(500, null, function ($constraint) {
+                        $constraint->aspectRatio();
+                        $constraint->upsize();
+                    })
+                  ->encode($mimetype, 100)  // encode file to the specified mimetype
+                  ->save(public_path($filepath));                
+                $new_src = asset($filepath);
+                $img->removeAttribute('src');
+                $img->setAttribute('src', $new_src);
+            } // <!--endif
+        } // <!-
+
+
         // Update Data
         $data = Faq::find($id);
         $data->category_id = $request->category;
         $data->location_id = $request->location;
         $data->question = $request->question;
-        $data->answer = $request->answer;
+        $data->answer = $dom->saveHTML();
         $data->image = $fileNameToStore;
-        $data->ref_url = $request->ref_url;
         $data->video_id = $request->video_id;
         $data->status = $request->status;
         $data->updated_by = Auth::user()->id;

@@ -69,9 +69,11 @@ Route::group(['prefix' => 'admin',  'middleware' => 'auth'], function()
     Route::get('faq/approve', 'Admin\FaqController@approve')->name('faq.approve');
     Route::get('faq/pending', 'Admin\FaqController@pending')->name('faq.pending');
     Route::get('faq/reject', 'Admin\FaqController@reject')->name('faq.reject');
+    Route::get('faq/{id}', 'Admin\FaqController@edit')->name('faq.edit');
     Route::put('faq/{id}', 'Admin\FaqController@update')->name('faq.update');
     Route::delete('faq/{id}', 'Admin\FaqController@destroy')->name('faq.destroy');
     Route::get('faq/sendMail/{id}', 'Admin\FaqController@sendMail')->name('faq.sendMail');
+    Route::get('faq/back', 'Admin\FaqController@back')->name('faq.back');
 
     // Setting Routes
     Route::get('setting', 'Admin\SettingController@index')->name('setting.index');

@@ -3015,6 +3015,12 @@ label span {
      color: #f1556c;
 }
 
+label {
+  font-weight: 600;
+  text-transform: capitalize;
+}
+
+
 .modal-body {
     word-break: break-word;
     white-space: normal;
@@ -3022,7 +3028,17 @@ label span {
     text-align: justify;
 }
 
-label {
-  font-weight: 600;
-  text-transform: capitalize;
+.modal-body img {
+    margin: 0 auto !important;
+    max-width: 100% !important;
+    width: 100% !important;
+    height: auto !important;
+    overflow: hidden !important;
+    display: inline-block !important;
+}
+
+.modal-body embed, .modal-body iframe, .modal-body video {
+  width: 100%    !important;
+  height: none   !important;
+  min-height: 200px   !important;
 }

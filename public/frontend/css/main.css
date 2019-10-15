@@ -18233,3 +18233,10 @@ ul.social li a {
   padding: 15px 0;
   text-align: justify;
 }
+
+
+.container embed, .container iframe, .container video {
+  width: 100%    !important;
+  height: none   !important;
+  min-height: 200px   !important;
+}
