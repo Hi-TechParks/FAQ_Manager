@@ -45,8 +45,19 @@ class SearchController extends Controller
                     ->take(15)
                     ->get();
 
-
+        // Data pass to view
         $search_list = view('search_list',compact('faqs'))->render();
+
+
+        if(!empty($request->get('location'))){
+            // Increment Views
+            $locationKey = 'location_' . $request->get('location');
+
+            if (!Session::has($locationKey)) {
+                Location::where('id', $request->get('location'))->increment('views');
+                Session::put($locationKey, 1);
+            }
+        }
 
       }
 
@@ -145,108 +156,4 @@ class SearchController extends Controller
         return view('search', compact('faq_categories', 'faqs', 'search'));
     }
 
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function autocomplete22(Request $request)
-    {
-
-        $faqs = Faq::select("title")
-
-                ->where("title","LIKE","%{$request->input('query')}%")
-
-                ->get();
-
-            foreach ($faqs as $faq)
-            {
-                $data[] = $faqs->title;
-            }
-
-        return response()->json($data);
-
-    }
-
-
-    public function autocomplete(Request $request)
-    {
-          $search = $request->get('term');
-     
-          $result = Faq::select('title')->where('title', 'LIKE', '%'. $search. '%')->get();
-
-          return response()->json($result);
-           
-    }
-
-
-    /**
-     * Show the application location.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function category(Request $request)
-    {
-        $data = [];
-
-        if($request->has('q')){
-
-            $search = $request->q;
-
-            $data = DB::table("faq_categories")
-                    ->select("id","title")
-                    ->where('title','LIKE',"%$search%")
-                    ->get();
-        }
-
-        return response()->json($data);
-    }
-    
-
-    /**
-     * Show the application location.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function location(Request $request)
-    {
-        $data = [];
-
-        if($request->has('q')){
-
-            $search = $request->q;
-
-            $data = DB::table("locations")
-                    ->select("id","title")
-                    ->where('title','LIKE',"%$search%")
-                    ->get();
-        }
-
-        return response()->json($data);
-    }
-
-
-    /**
-     * Show the application question.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function question(Request $request)
-    {
-        $data = [];
-
-        if($request->has('q')){
-
-            $search = $request->q;
-
-            $data = DB::table("faqs")
-                    ->select("id","question")
-                    ->where('question','LIKE',"%$search%")
-                    ->orWhere('answer', 'LIKE',"%$search%")
-                    ->get();
-        }
-
-        return response()->json($data);
-    }
 }

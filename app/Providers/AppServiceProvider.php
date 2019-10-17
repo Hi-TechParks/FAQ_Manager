@@ -35,10 +35,10 @@ class AppServiceProvider extends ServiceProvider
 
         // Share view for Common Data
         $settings = Setting::where('status', '1')->get();
-        $location_submenus = Location::where('status', '1')->get();
-        $category_submenus = FaqCategory::where('status', '1')->get();
+        $location_submenus = Location::where('home_flag', '1')->where('status', '1')->get();
+        $category_submenus = FaqCategory::where('home_flag', '1')->where('status', '1')->get();
         $socials = Social::where('status', '1')->get();
-        $search_locations = Location::where('status', '1')->get();
+        $search_locations = Location::where('home_flag', '1')->where('status', '1')->get();
 
 
         View::share(['settings' => $settings, 'location_submenus' => $location_submenus, 'category_submenus' => $category_submenus, 'socials' => $socials, 'search_locations' => $search_locations]);
