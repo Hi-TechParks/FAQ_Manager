@@ -12999,7 +12999,7 @@ ul.bullet-line > li:before {
   right: auto;
   left: 30px;
   bottom: 0;
-  top: 0;
+  top: -15px;
 }
 .search__icon > svg {
   display: block;
@@ -13014,6 +13014,7 @@ ul.bullet-line > li:before {
     height: 21px;
     width: 21px;
     left: 20px;
+    top: -25px;
   }
 }
 .search__input {
@@ -18234,9 +18235,113 @@ ul.social li a {
   text-align: justify;
 }
 
-
 .container embed, .container iframe, .container video {
   width: 100%    !important;
   height: none   !important;
   min-height: 200px   !important;
+}
+
+.search__form {
+  position: relative;
+}
+
+.search__form #search_result {
+  display: block;
+  position: absolute;
+  margin: 0px;
+  list-style-type: none;
+  background: #fff;
+  padding: 10px;
+  box-sizing: border-box;
+  width: 100%;
+  max-height: 400px;
+  height: auto;
+  z-index: 9999;
+  top: 150%;
+  border-radius: 0px;
+  overflow-x: hidden;
+  overflow-y: scroll;
+}
+
+.search__form #search_result li {
+  float: left;
+  width: 100%;
+  height: auto;
+  display: block;
+  padding: 5px 10px;
+  border-bottom: 1px solid #666;
+  color: #666;
+  background: #fff;
+}
+
+.search__form #search_result li:hover {
+  background: #f8f8f8;
+}
+
+.search__form #search_result li a {
+  text-decoration: none;
+  outline: none;
+}
+
+.search__form #search_result li .search_question {
+  color: rgb(38, 156, 218);;
+  font-size: 18px;
+  font-weight: bold;
+  text-decoration: none;
+  text-align: left;
+}
+
+.search__form #search_result li .search_answer {
+  color: #666;
+  font-size: 14px;
+  font-weight: normal;
+  text-decoration: none;
+  text-align: justify;
+}
+
+.search__form #search_result li .search_answer img,
+.search__form #search_result li .search_answer embed,
+.search__form #search_result li .search_answer iframe {
+  display: none;
+  visibility: hidden;
+}
+
+.search__form .select_location {
+  display: block;
+  margin: 0px;
+  padding: 0px;
+  list-style-type: none;
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+.search__form .select_location li {
+  float: left;
+  width: auto;
+  height: auto;
+  display: inline-block;
+  padding: 5px 10px;
+  color: #666;
+  background: transparent;
+}
+
+.search__form .select_location li input[type='radio'] {
+  display: none;
+}
+
+.search__form .select_location li span {
+  background: rgb(38, 156, 218);
+  color: #fff;
+  font-size: 18px;
+  text-align: center;
+  text-transform: capitalize;
+  padding: 5px 10px;
+  box-sizing: border-box;
+  font-weight: 400;
+  border: 2px solid #fff;
+}
+
+.search__form .select_location li input[type="radio"]:checked ~ span {
+  color: rgb(38, 156, 218);
+  background: #fff;
 }

@@ -83,17 +83,41 @@
           <div class="search">
             <h2 class="search__title">Going somewhere? Got questions?</h2>
             <div class="search__form">
-              <form action="{{ URL('/search') }}" method="get">
-                <!-- <input class="search__input" type="text" name="search" placeholder="Ask a question or search by keyword..."> -->
-                <select class="location search__input select_search" name="location">
+              <div action="#" method="get">
+
+                <input class="search__input" type="text" name="search" id="question" placeholder="Type Your Question...">
+
+                <div class="search__icon"><i class="fas fa-search"></i></div>
+
+                <ol class="select_location">
+                  @foreach($search_locations as $search_location)
+                  <li>
+                    <label for="location_{{ $search_location->id }}">
+                      <input type="radio" name="location" value="{{ $search_location->id }}" id="location_{{ $search_location->id }}">
+                      <span>{{ $search_location->title }}</span>
+                    </label>
+                  </li>
+                  @endforeach
+                </ol>
+
+                <ol id="search_result">
+                  {{-- <li>
+                    <a href="#">
+                      <div class="search_question">Going somewhere?</div>
+                      <div class="search_answer">Going somewhere? Going somewhere? Going somewhere? Going somewhere? Going somewhere?</div>
+                    </a>
+                  </li> --}}
+                </ol>
+
+                {{-- <select class="location search__input select_search" name="location">
                   <option value="" selected="">All Location</option>
                 </select>
-                <select class="question search__input select_search" name="question"></select>
+                <select class="question search__input select_search" name="question"></select> --}}
 
-                <input type="submit" class="btn btn-white submit_search" name="submit" value="Search">
+                {{-- <input type="submit" class="btn btn-white submit_search" name="submit" value="Search"> --}}
 
                 <!-- <div class="search__icon"><i class="fas fa-search"></i></div> -->
-              </form>
+              </div>
             </div>
           </div>
 
@@ -280,7 +304,161 @@
 
 
 
-    <script type="text/javascript">
+
+    {{-- <script src="http://code.jquery.com/jquery-3.3.1.min.js"
+       integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+       crossorigin="anonymous">
+    </script> --}}
+    <script>
+     jQuery('#search_result').hide();
+
+     jQuery(document).ready(function(){
+        jQuery(document).on('keyup', '#question', function(e) {
+
+          // For Delay
+          function timer(){
+
+            // alert(jQuery("[name='location']:checked").val());
+             e.preventDefault();
+             $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+                }
+            });
+            jQuery.ajax({
+               url: "{{ route('search') }}",
+               method: 'get',
+               data: {
+                  question: jQuery('#question').val(),
+                  location: jQuery("[name='location']:checked").val()
+               },
+               success: function(result){
+                  jQuery('#search_result').show();
+                  jQuery('#search_result').html(result.values);
+
+                  console.log(result.values);
+               }});
+
+          }
+          //setTimeout(myFunc,5000);
+          //setTimeout(timer,1000);
+
+          //setup before functions
+          var typingTimer;                //timer identifier
+          var doneTypingInterval = 500;  //time in ms, 1 second for example
+          var $input = $('#question');
+
+          //on keyup, start the countdown
+          $input.on('keyup', function () {
+            clearTimeout(typingTimer);
+            typingTimer = setTimeout(timer, doneTypingInterval);
+          });
+
+          //on keydown, clear the countdown 
+          $input.on('keydown', function () {
+            clearTimeout(typingTimer);
+          });
+
+        });
+     });
+
+
+
+
+     jQuery(document).ready(function(){
+        jQuery(document).on('change', "[name='location']", function(e) {
+
+          // For Delay
+          function timer(){
+
+             //alert(jQuery("[name='location']:checked").val());
+             e.preventDefault();
+             $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+                }
+            });
+            jQuery.ajax({
+               url: "{{ route('search') }}",
+               method: 'get',
+               data: {
+                  question: jQuery('#question').val(),
+                  location: jQuery("[name='location']:checked").val()
+               },
+               success: function(result){
+                  jQuery('#search_result').show();
+                  jQuery('#search_result').html(result.values);
+
+                  console.log(result.values);
+               }});
+
+          }
+          //setTimeout(myFunc,5000);
+          //setTimeout(timer,1000);
+
+          //setup before functions
+          var typingTimer;                //timer identifier
+          var doneTypingInterval = 1000;  //time in ms, 1 second for example
+          var $input = $('#question');
+
+          //on keyup, start the countdown
+          $input.on('keyup', function () {
+            clearTimeout(typingTimer);
+            typingTimer = setTimeout(timer, doneTypingInterval);
+          });
+
+          //on keydown, clear the countdown 
+          $input.on('keydown', function () {
+            clearTimeout(typingTimer);
+          });
+
+        });
+     });
+
+
+    /*jQuery(document).ready(function(){
+
+      //setup before functions
+      var typingTimer;                //timer identifier
+      var doneTypingInterval = 1000;  //time in ms, 1 second for example
+      var $input = $('#question');
+
+      //on keyup, start the countdown
+      $input.on('keyup', function () {
+        clearTimeout(typingTimer);
+        typingTimer = setTimeout(doneTyping, doneTypingInterval);
+      });
+
+      //on keydown, clear the countdown 
+      $input.on('keydown', function () {
+        clearTimeout(typingTimer);
+      });
+
+      //user is "finished typing," do something
+      function doneTyping () {
+        //do something
+        // alert(jQuery('#question').val());
+      }
+
+    });*/
+
+
+     /*$('#inputname').on('keyup',function(){
+
+        function timer(){
+        var name = $('#inputname').val();
+        $('#yourname').text(name);
+          }
+       
+       //setTimeout(myFunc,5000);
+        setTimeout(timer,3000);   
+
+      });*/
+    </script>
+
+
+
+    {{-- <script type="text/javascript">
 
       $('.question').select2({
         placeholder: 'Ask Your Question!',
@@ -353,37 +531,7 @@
         }
       });
 
-
-
-
-    /*$(document).ready(function() {
-      $('.location22').select2({
-          placeholder: "Select Location",
-          tags: true,
-          allowClear: true,
-          minimumInputLength: 2,
-          ajax: {
-              url: '/search/location',
-              type: "get",
-              dataType: 'json',
-              delay: 250,
-              data: function (params) {
-                  return {
-                      search_term: params.term
-                  };
-              },
-              processResults: function (data) {
-                  return {
-                      results: $.map(data.location.data, function(obj) {
-                          return {id: obj.id,  text: obj.title };
-                      })
-                  };
-              },
-              cache: true
-          }
-      });
-    });
-*/    </script>
+    </script> --}}
 
   </body>
 </html>

@@ -19,10 +19,11 @@ Route::get('/', 'HomeController@index')->name('home');
 Route::get('/faqs', 'FaqsController@index');
 Route::get('/faq/category/{id}', 'FaqsController@category');
 Route::get('/faq/location/{id}', 'FaqsController@location');
-Route::get('/faq/{id}', 'FaqsController@show');
+Route::get('/faq/{id}', 'FaqsController@show')->name('single.faq.show');
 
 // Search Route
-Route::get('/search', 'SearchController@index');
+Route::get('/search', 'SearchController@index')->name('search');
+Route::get('/new', 'SearchController@new')->name('new');
 
 Route::get('/search/question', 'SearchController@question')->name('question');
 Route::get('/search/location', 'SearchController@location')->name('location');

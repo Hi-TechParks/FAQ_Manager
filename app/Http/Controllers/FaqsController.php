@@ -97,4 +97,19 @@ class FaqsController extends Controller
 
         return view('faq-location', compact('faq_locations', 'faqs', 'current_location', 'page_meta'));
     }
+
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
+    {
+        // Faq                               
+        $faq = Faq::find($id);
+
+        return view('faq', compact('faq'));
+    }
 }

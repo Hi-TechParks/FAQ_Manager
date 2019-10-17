@@ -18,6 +18,96 @@ class SearchController extends Controller
      */
     public function index(Request $request)
     {
+      // Search Question    
+      if($request->get('question') != Null && !empty($request->get('question'))){
+
+        $question = DB::table('faqs')->where('faqs.question', 'LIKE', '%'.$request->get('question').'%' );
+
+            if(!empty($request->get('location'))){
+              $question->where('faqs.location_id', $request->get('location'));
+            }
+
+            $faqs_ques = $question->where('faqs.status', '1')
+                    ->orderBy('faqs.id', 'desc');
+
+
+
+        // Search Answer
+        $answer = DB::table('faqs')->where('faqs.answer', 'LIKE', '%'.$request->get('question').'%' );
+
+            if(!empty($request->get('location'))){
+              $answer->where('faqs.location_id', $request->get('location'));
+            }
+
+            $faqs = $answer->where('faqs.status', '1')
+                    ->orderBy('faqs.id', 'desc')
+                    ->unionAll($faqs_ques)
+                    ->take(15)
+                    ->get();
+
+
+        $search_list = view('search_list',compact('faqs'))->render();
+
+      }
+
+      return response()->json(['values'=> $search_list]);
+    }
+
+
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function new(Request $request)
+    {
+      // Search Question    
+      if(1 == 1){
+
+        $question = DB::table('faqs')->where('faqs.question', 'LIKE', '%'.'will'.'%' );
+            // ->orWhere('faqs.answer', 'LIKE', '%'.$request->question.'%' );
+
+            if(1 == 1){
+              $question->where('faqs.location_id', 1);
+            }
+
+            $faqs_ques = $question->where('faqs.status', '1')
+                    ->orderBy('faqs.id', 'desc');
+
+
+
+        // Search Answer
+        $answer = DB::table('faqs')->where('faqs.answer', 'LIKE', '%'.'will'.'%' );
+
+            if(1 == 1){
+              $answer->where('faqs.location_id', 1);
+            }
+
+            $faqs = $answer->where('faqs.status', '1')
+                    ->orderBy('faqs.id', 'desc')
+                    ->unionAll($faqs_ques)
+                    ->get();
+
+
+        return $faqs;
+
+        //$search_list = view('search_list',compact('faqs'))->render();
+
+      }
+
+     //return response()->json(['values'=> $search_list]);
+    }
+
+
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index3333(Request $request)
+    {
         // Faq Categories
         $faq_categories = FaqCategory::where('status', '1')
                                     ->orderBy('title', 'ASC')

@@ -38,9 +38,10 @@ class AppServiceProvider extends ServiceProvider
         $location_submenus = Location::where('status', '1')->get();
         $category_submenus = FaqCategory::where('status', '1')->get();
         $socials = Social::where('status', '1')->get();
+        $search_locations = Location::where('status', '1')->get();
 
 
-        View::share(['settings' => $settings, 'location_submenus' => $location_submenus, 'category_submenus' => $category_submenus, 'socials' => $socials]);
+        View::share(['settings' => $settings, 'location_submenus' => $location_submenus, 'category_submenus' => $category_submenus, 'socials' => $socials, 'search_locations' => $search_locations]);
 
     }
 }
