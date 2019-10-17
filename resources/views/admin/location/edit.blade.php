@@ -44,6 +44,11 @@
                     </div>
 
                     <div class="form-group">
+                        <input type="checkbox" data-plugin="switchery" data-color="#1bb99a" data-size="small" name="home_flag" id="home_flag_{{ $row->id }}" value="1" @if( $row->home_flag == 1 ) checked @endif>
+                        <label for="home_flag_{{ $row->id }}">Show To Home</label>
+                    </div>
+
+                    <div class="form-group">
                         <label for="status">Select Status</label>
                         <select class="wide" name="status" id="status" data-plugin="customselect">
                             <option value="1" @if( $row->status == 1 ) selected @endif>Active</option>

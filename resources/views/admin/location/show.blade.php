@@ -18,6 +18,14 @@
                     <p><span class="text-highlight">Meta Keywords:</span> {!! $row->meta_keyword !!}</p>
                     
                     <hr/>
+                    <p><span class="text-highlight">Show To Home:</span> 
+                        @if( $row->home_flag == 1 )
+                        <span class="badge badge-success">Yes</span>
+                        @else
+                        <span class="badge badge-danger">No</span>
+                        @endif
+                    </p>
+                    
                     <p><span class="text-highlight">Status:</span> 
                     @if( $row->status == 1 )
                     <span class="badge badge-success badge-pill">Active</span>

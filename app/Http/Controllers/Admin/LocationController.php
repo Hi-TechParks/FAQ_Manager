@@ -76,6 +76,7 @@ class LocationController extends Controller
         $data->description = $request->details;
         $data->meta_keyword = $request->meta_keyword;
         $data->meta_desc = $request->meta_desc;
+        $data->home_flag = $request->home_flag;
         $data->status = 1;
         $data->created_by = Auth::user()->id;
         $data->save();
@@ -130,6 +131,7 @@ class LocationController extends Controller
         $data->description = $request->details;
         $data->meta_keyword = $request->meta_keyword;
         $data->meta_desc = $request->meta_desc;
+        $data->home_flag = $request->home_flag;
         $data->status = $request->status;
         $data->updated_by = Auth::user()->id;
         $data->save();

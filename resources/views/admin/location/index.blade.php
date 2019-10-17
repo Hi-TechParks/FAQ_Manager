@@ -41,6 +41,7 @@
                             <tr>
                                 <th>No</th>
                                 <th>Title</th>
+                                <th>Show To Home</th>
                                 <th>Views</th>
                                 <th>Status</th>
                                 <th>Action</th>
@@ -51,6 +52,13 @@
                             <tr>
                                 <td>{{ $key + 1 }}</td>
                                 <td>{{ $row->title }}</td>
+                                <td>
+                                    @if( $row->home_flag == 1 )
+                                    <span class="badge badge-success">Yes</span>
+                                    @else
+                                    <span class="badge badge-danger">No</span>
+                                    @endif
+                                </td>
                                 <td>{{ $row->views }}</td>
                                 <td>
                                     @if( $row->status == 1 )

@@ -42,6 +42,11 @@
                           Please Provide Meta Keywords.
                         </div>
                     </div>
+
+                    <div class="form-group">
+                        <input type="checkbox" data-plugin="switchery" data-color="#1bb99a" data-size="small" name="home_flag" id="home_flag" value="1" checked>
+                        <label for="home_flag">Show To Home</label>
+                    </div>
                     <!-- Form End -->
                 </div>
                 <div class="modal-footer">

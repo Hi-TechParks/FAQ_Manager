@@ -34,10 +34,6 @@
     <script src="{{ asset('frontend/js/jquery.min.js') }}"></script>
     <script src="{{ asset('frontend/select2/js/select2.min.js') }}"></script>
 
-    <!-- <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css" rel="stylesheet" />
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script> -->
-
 
     <!-- App CSS -->
     <link rel="stylesheet" type="text/css" href="{{ asset('backend/css/bootstrap.min.css') }}">
@@ -109,14 +105,6 @@
                   </li> --}}
                 </ol>
 
-                {{-- <select class="location search__input select_search" name="location">
-                  <option value="" selected="">All Location</option>
-                </select>
-                <select class="question search__input select_search" name="question"></select> --}}
-
-                {{-- <input type="submit" class="btn btn-white submit_search" name="submit" value="Search"> --}}
-
-                <!-- <div class="search__icon"><i class="fas fa-search"></i></div> -->
               </div>
             </div>
           </div>
@@ -304,12 +292,7 @@
 
 
 
-
-    {{-- <script src="http://code.jquery.com/jquery-3.3.1.min.js"
-       integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-       crossorigin="anonymous">
-    </script> --}}
-    <script>
+    <script type="text/javascript">
      jQuery('#search_result').hide();
 
      jQuery(document).ready(function(){
@@ -364,7 +347,6 @@
 
 
 
-
      jQuery(document).ready(function(){
         jQuery(document).on('change', "[name='location']", function(e) {
 
@@ -414,124 +396,7 @@
 
         });
      });
-
-
-    /*jQuery(document).ready(function(){
-
-      //setup before functions
-      var typingTimer;                //timer identifier
-      var doneTypingInterval = 1000;  //time in ms, 1 second for example
-      var $input = $('#question');
-
-      //on keyup, start the countdown
-      $input.on('keyup', function () {
-        clearTimeout(typingTimer);
-        typingTimer = setTimeout(doneTyping, doneTypingInterval);
-      });
-
-      //on keydown, clear the countdown 
-      $input.on('keydown', function () {
-        clearTimeout(typingTimer);
-      });
-
-      //user is "finished typing," do something
-      function doneTyping () {
-        //do something
-        // alert(jQuery('#question').val());
-      }
-
-    });*/
-
-
-     /*$('#inputname').on('keyup',function(){
-
-        function timer(){
-        var name = $('#inputname').val();
-        $('#yourname').text(name);
-          }
-       
-       //setTimeout(myFunc,5000);
-        setTimeout(timer,3000);   
-
-      });*/
     </script>
-
-
-
-    {{-- <script type="text/javascript">
-
-      $('.question').select2({
-        placeholder: 'Ask Your Question!',
-        minimumInputLength: 3,
-        tags: true,
-        ajax: {
-          url: '{{ Route("question") }}',
-          dataType: 'json',
-          delay: 250,
-
-          processResults: function (data) {
-            return {
-              results:  $.map(data, function (question) {
-                    return {
-                        text: question.question,
-                        id: question.question
-                    }
-                })
-            };
-          },
-          cache: true
-        }
-      });
-
-    </script>
-
-    <script type="text/javascript">
-      $('.category').select2({
-        placeholder: 'Select Category',
-        minimumInputLength: 3,
-        ajax: {
-          url: '{{ Route("category") }}',
-          dataType: 'json',
-          delay: 250,
-
-          processResults: function (data) {
-            return {
-              results:  $.map(data, function (category) {
-                    return {
-                        text: category.title,
-                        id: category.id
-                    }
-                })
-            };
-          },
-          cache: true
-        }
-      });
-
-
-      $('.location').select2({
-        placeholder: 'Location',
-        minimumInputLength: 3,
-        ajax: {
-          url: '{{ Route("location") }}',
-          dataType: 'json',
-          delay: 250,
-
-          processResults: function (data) {
-            return {
-              results:  $.map(data, function (location) {
-                    return {
-                        text: location.title,
-                        id: location.id
-                    }
-                })
-            };
-          },
-          cache: true
-        }
-      });
-
-    </script> --}}
 
   </body>
 </html>
