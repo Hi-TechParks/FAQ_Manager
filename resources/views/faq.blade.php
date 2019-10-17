@@ -46,6 +46,16 @@
                 {!! $faq->answer !!}
 
               </div>
+
+              <div class="faq__item text-center">
+                <ul class="social">
+                  <li class="social-facebook"><a href="https://www.facebook.com/sharer/sharer.php?u={{ route('single.faq.show', [$faq->id]) }}&display=popup" class="social-icons" target="_blank"><i class="fab fa-facebook-square"></i></a></li>
+
+                  <li class="social-twitter"><a href="https://twitter.com/intent/tweet?url={{ route('single.faq.show', [$faq->id]) }}&text={{ $faq->question }}" class="social-icons" target="_blank"><i class="fab fa-twitter-square"></i></a></li>
+
+                  <li class="social-email"><a href="mailto:?subject={{ $faq->question }}&amp;body=Check out the answer : {{ route('single.faq.show', [$faq->id]) }}" class="social-icons" target="_blank"><i class="fas fa-envelope"></i></a></li>
+                </ul>
+              </div>
               
             </div>
 
