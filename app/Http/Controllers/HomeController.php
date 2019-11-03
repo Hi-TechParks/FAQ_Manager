@@ -20,6 +20,7 @@ class HomeController extends Controller
     {
         // Faq Categories
         $faq_categories = FaqCategory::where('status', '1')
+                                    ->where('home_flag', '1')
                                     ->orderBy('title', 'ASC')
                                     ->get();
 

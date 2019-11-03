@@ -49,7 +49,6 @@ class Handler extends ExceptionHandler
         if ($exception instanceof \Spatie\Permission\Exceptions\UnauthorizedException) {
 
             return redirect()->back();
-            return response()->json(['User have not permission for this page access.']);
             // return view('errors.404');
 
         }
