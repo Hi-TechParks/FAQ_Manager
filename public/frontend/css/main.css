@@ -12985,6 +12985,15 @@ ul.bullet-line > li:before {
 .search__title {
   margin-bottom: 30px;
 }
+.search__title b {
+  font-family: inherit;
+  font-weight: 400;
+  line-height: 1.2;
+  color: inherit;
+}
+.search__title.cd-headline.clip span {
+  padding: 0px !important;
+}
 @media (max-width: 768.08px) {
   .search__title {
     margin-bottom: .5em;

@@ -39,6 +39,7 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('backend/css/bootstrap.min.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('frontend/css/all.min.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('frontend/select2/css/select2.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('frontend/css/animate-text.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('frontend/css/main.css') }}">
     
 
@@ -77,7 +78,14 @@
 
           <!-- search-->
           <div class="search">
-            <h2 class="search__title">Going somewhere? Got questions?</h2>
+            <h2 class="cd-headline clip is-full-width search__title">
+               <span class="cd-words-wrapper">
+                 <b class="is-visible">Going somewhere? Got questions?</b>
+                 <b>Going somewhere? Got questions?</b>
+                 <b>Going somewhere? Got questions?</b>
+              </span>
+            </h2>
+
             <div class="search__form">
               <div action="#" method="get">
 
@@ -285,6 +293,7 @@
     <script src="{{ asset('frontend/js/fancybox.min.js') }}"></script>
     <script src="{{ asset('frontend/js/all.min.js') }}"></script>
     <script src="{{ asset('frontend/js/wow.min.js') }}"></script>
+    <script src="{{ asset('frontend/js/animate-text.js') }}"></script>
 
     <!-- Custom JS -->
     <script src="{{ asset('frontend/js/main.js') }}"></script>
