@@ -89,11 +89,19 @@
             <div class="search__form">
               <div action="#" method="get">
 
-                <input class="search__input" type="text" name="search" id="question" placeholder="Type Your Question...">
 
-                <div class="search__icon"><i class="fas fa-search"></i></div>
+                <select class="search__input location_search" name="location" id="location">
+                  <option value="">All Location</option>
+                  @foreach($search_locations as $search_location)
+                  <option value="{{ $search_location->id }}">{{ $search_location->title }}</option>
+                  @endforeach
+                </select>
 
-                <ol class="select_location">
+                <input class="search__input qustion_search" type="text" name="search" id="question" placeholder="Type your question here...">
+
+                {{-- <div class="search__icon"><i class="fas fa-search"></i></div> --}}
+
+                {{-- <ol class="select_location">
                   @foreach($search_locations as $search_location)
                   <li>
                     <label for="location_{{ $search_location->id }}">
@@ -102,7 +110,7 @@
                     </label>
                   </li>
                   @endforeach
-                </ol>
+                </ol> --}}
 
                 <ol id="search_result">
                   {{-- <li>
@@ -300,7 +308,6 @@
     <!-- ./ App scripts-->
 
 
-
     <script type="text/javascript">
      jQuery('#search_result').hide();
 
@@ -310,7 +317,7 @@
           // For Delay
           function timer(){
 
-            // alert(jQuery("[name='location']:checked").val());
+            // alert(jQuery("#location option:selected").val());
              e.preventDefault();
              $.ajaxSetup({
                 headers: {
@@ -322,7 +329,7 @@
                method: 'get',
                data: {
                   question: jQuery('#question').val(),
-                  location: jQuery("[name='location']:checked").val()
+                  location: jQuery("#location option:selected").val()
                },
                success: function(result){
                   jQuery('#search_result').show();
@@ -353,16 +360,19 @@
 
         });
      });
+    </script>
 
 
+    <script type="text/javascript">
+     jQuery('#search_result').hide();
 
      jQuery(document).ready(function(){
-        jQuery(document).on('change', "[name='location']", function(e) {
+        jQuery(document).on('change', '#location', function(e) {
 
           // For Delay
           function timer(){
 
-             //alert(jQuery("[name='location']:checked").val());
+            alert(jQuery("#location option:selected").val());
              e.preventDefault();
              $.ajaxSetup({
                 headers: {
@@ -374,7 +384,7 @@
                method: 'get',
                data: {
                   question: jQuery('#question').val(),
-                  location: jQuery("[name='location']:checked").val()
+                  location: jQuery("#location option:selected").val()
                },
                success: function(result){
                   jQuery('#search_result').show();
@@ -389,7 +399,7 @@
 
           //setup before functions
           var typingTimer;                //timer identifier
-          var doneTypingInterval = 1000;  //time in ms, 1 second for example
+          var doneTypingInterval = 500;  //time in ms, 1 second for example
           var $input = $('#question');
 
           //on keyup, start the countdown
