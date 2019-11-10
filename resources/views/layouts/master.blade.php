@@ -13,7 +13,9 @@
     <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('/uploads/setting/'.$setting->favicon_path) }}">
     <link rel="shortcut icon" href="{{ asset('/uploads/setting/'.$setting->favicon_path) }}">
 
-      @if(isset($page_meta))
+      @if(isset($faq_meta))
+        <meta name="description" content="{!! $faq_meta->answer !!}">
+      @elseif(isset($page_meta))
         <meta name="description" content="{{ $page_meta->meta_desc }}">
         <meta name="keywords" content="{{ $page_meta->meta_keyword }}">
       @else
