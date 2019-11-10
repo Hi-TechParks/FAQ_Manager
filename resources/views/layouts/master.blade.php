@@ -266,8 +266,8 @@
                           @if(isset($social->twitter))
                           <li class="social-twitter"><a href="{{ $social->twitter }}" class="social-icons" target="_blank"><i class="fab fa-twitter-square"></i></a></li>
                           @endif
-                          @if(isset($social->linkedin))
-                          <li class="social-linkedin"><a href="{{ $social->linkedin }}" class="social-icons" target="_blank"><i class="fab fa-linkedin"></i></a></li>
+                          @if(isset($social->instagram))
+                          <li class="social-instagram"><a href="{{ $social->instagram }}" class="social-icons" target="_blank"><i class="fab fa-instagram"></i></a></li>
                           @endif
                           @if(isset($social->youtube))
                           <li class="social-youtube"><a href="{{ $social->youtube }}" class="social-icons" target="_blank"><i class="fab fa-youtube-square"></i></a></li>

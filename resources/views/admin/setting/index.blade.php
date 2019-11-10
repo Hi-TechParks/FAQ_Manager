@@ -296,11 +296,11 @@
 
                         <div class="row">
                           <div class="form-group col-md-6">
-                            <label for="linkedin">Linkedin</label>
-                            <input type="url" class="form-control" name="linkedin" id="linkedin" value="{{ isset($social->linkedin)?$social->linkedin:'' }}" placeholder="Linkedin URL">
+                            <label for="linkedin">Instagram</label>
+                            <input type="url" class="form-control" name="instagram" id="instagram" value="{{ isset($social->instagram)?$social->instagram:'' }}" placeholder="Instagram URL">
 
                             <div class="invalid-feedback">
-                              Please Provide Linkedin URL.
+                              Please Provide Instagram URL.
                             </div>
                           </div>
 

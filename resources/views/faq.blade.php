@@ -20,7 +20,7 @@
                 <nav aria-label="breadcrumb">
                   <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="{{ URL('/') }}">Home</a></li>
-                    <li class="breadcrumb-item"><a href="{{ URL('/faq/category/'.$faq->category->id) }}" title="">{{ $faq->category->title }}</a></li>
+                    <li class="breadcrumb-item"><a href="{{ URL('/faq/category/'.$faq->category->slug) }}" title="">{{ $faq->category->title }}</a></li>
                   </ol>
                 </nav>
               </div>
@@ -66,7 +66,7 @@
                   <div class="categories-nav__icon">
                     <i class="fas fa-folder-plus"></i>
                   </div>
-                  <a href="{{ URL('/faq/category/'.$category_submenu->id) }}">{{ $category_submenu->title }}</a>
+                  <a href="{{ URL('/faq/category/'.$category_submenu->slug) }}">{{ $category_submenu->title }}</a>
                   <sup>{{ $category_submenu->faqs->count() }}</sup>
                 </li>
                 @endforeach

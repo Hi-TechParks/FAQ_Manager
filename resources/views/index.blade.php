@@ -99,7 +99,7 @@
                   <div class="faq-nav__icon">
                     <i class="fas fa-exclamation-circle"></i>
                   </div>
-                  <a href="{{ URL('/faq/category/'.$faq_category->id) }}">{{ $faq_category->title }}</a>
+                  <a href="{{ URL('/faq/category/'.$faq_category->slug) }}">{{ $faq_category->title }}</a>
                 </li>
                 @endforeach
                 

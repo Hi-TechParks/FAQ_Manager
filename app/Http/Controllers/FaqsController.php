@@ -36,12 +36,15 @@ class FaqsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function category($id)
+    public function category($slug)
     {
         // Faq Categories
         $faq_categories = FaqCategory::where('status', '1')
                         ->orderBy('title', 'ASC')
                         ->get();
+
+        $category = FaqCategory::where('slug', $slug)->firstOrFail();
+        $id = $category->id;
 
         // Faqs                                
         $faqs = Faq::where('category_id', $id)
@@ -70,12 +73,15 @@ class FaqsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function location($id)
+    public function location($slug)
     {
         // Faq Locations
         $faq_locations = Location::where('status', '1')
                         ->orderBy('title', 'ASC')
                         ->get();
+
+        $location = Location::where('slug', $slug)->firstOrFail();
+        $id = $location->id;
 
         // Faqs                                
         $faqs = Faq::where('location_id', $id)

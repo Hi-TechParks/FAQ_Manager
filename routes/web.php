@@ -17,8 +17,8 @@ Route::get('/', 'HomeController@index')->name('home');
 
 // Faq Routes
 Route::get('/faqs', 'FaqsController@index');
-Route::get('/faq/category/{id}', 'FaqsController@category');
-Route::get('/faq/location/{id}', 'FaqsController@location');
+Route::get('/faq/category/{slug}', 'FaqsController@category');
+Route::get('/faq/location/{slug}', 'FaqsController@location');
 Route::get('/faq/{id}', 'FaqsController@show')->name('single.faq.show');
 
 // Search Route
