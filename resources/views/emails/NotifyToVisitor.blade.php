@@ -293,13 +293,13 @@
                                                                             @endif
                                                                         </td>
                                                                         <td style="word-break: break-word; vertical-align: top; padding-bottom: 5px; padding-right: 5px; padding-left: 5px;" valign="top">
-                                                                            @if(isset($social->youtube))
-                                                                            <a href="{{ $social->youtube }}" target="_blank"><img alt="Instagram" height="32" src="{{ asset('/emails/instagram@2x.png') }}" style="text-decoration: none; -ms-interpolation-mode: bicubic; height: auto; border: none; display: block;" title="Instagram" width="32" /></a>
+                                                                            @if(isset($social->instagram))
+                                                                            <a href="{{ $social->instagram }}" target="_blank"><img alt="Instagram" height="32" src="{{ asset('/emails/instagram@2x.png') }}" style="text-decoration: none; -ms-interpolation-mode: bicubic; height: auto; border: none; display: block;" title="Instagram" width="32" /></a>
                                                                             @endif
                                                                         </td>
                                                                         <td style="word-break: break-word; vertical-align: top; padding-bottom: 5px; padding-right: 5px; padding-left: 5px;" valign="top">
-                                                                            @if(isset($social->linkedin))
-                                                                            <a href="{{ $social->linkedin }}" target="_blank"><img alt="LinkedIn" height="32" src="{{ asset('/emails/linkedin@2x.png') }}" style="text-decoration: none; -ms-interpolation-mode: bicubic; height: auto; border: none; display: block;" title="LinkedIn" width="32" /></a>
+                                                                            @if(isset($social->youtube))
+                                                                            <a href="{{ $social->youtube }}" target="_blank"><img alt="Youtube" height="32" src="{{ asset('/emails/youtube@2x.png') }}" style="text-decoration: none; -ms-interpolation-mode: bicubic; height: auto; border: none; display: block;" title="Youtube" width="32" /></a>
                                                                             @endif
                                                                         </td>
                                                                     </tr>
