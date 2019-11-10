@@ -145,8 +145,8 @@
         <div class="container wow fadeIn">
           <div class="row align-items-center">
             <div class="col-lg-8 mb-40 text-lg-left text-center">
-              <h2>No luck what you're looking&nbsp;for?</h2>
-              <div class="lead">Let us know details about your quesiton. We'll get back to you!</div>
+              <h2>Still haven't find what you are looking for?</h2>
+              <div class="lead">Special request or need some advice?</div>
             </div>
             <div class="col-lg-4 mb-40 text-center"><a class="btn btn-white" data-toggle="modal" data-target="#AskYourQuestion" href="#AskYourQuestion">Ask Your Question</a>
             </div>
