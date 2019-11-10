@@ -17,17 +17,12 @@ class FaqsController extends Controller
      */
     public function index()
     {
-        // Faq Categories
-        $faq_categories = FaqCategory::where('status', '1')
-                        ->orderBy('title', 'ASC')
-                        ->get();
-
         // Faqs                                
         $faqs = Faq::where('status', '1')
                     ->orderBy('id', 'desc')
                     ->paginate(10);
 
-        return view('faqs', compact('faq_categories', 'faqs'));
+        return view('faqs', compact('faqs'));
     }
 
     /**
@@ -38,11 +33,7 @@ class FaqsController extends Controller
      */
     public function category($slug)
     {
-        // Faq Categories
-        $faq_categories = FaqCategory::where('status', '1')
-                        ->orderBy('title', 'ASC')
-                        ->get();
-
+        // Faq Category
         $category = FaqCategory::where('slug', $slug)->firstOrFail();
         $id = $category->id;
 
@@ -64,7 +55,7 @@ class FaqsController extends Controller
 
         $page_meta = $current_category = FaqCategory::find($id);
 
-        return view('faq-category', compact('faq_categories', 'faqs', 'current_category', 'page_meta'));
+        return view('faq-category', compact('faqs', 'current_category', 'page_meta'));
     }
 
     /**
@@ -75,11 +66,7 @@ class FaqsController extends Controller
      */
     public function location($slug)
     {
-        // Faq Locations
-        $faq_locations = Location::where('status', '1')
-                        ->orderBy('title', 'ASC')
-                        ->get();
-
+        // Faq Location
         $location = Location::where('slug', $slug)->firstOrFail();
         $id = $location->id;
 
@@ -101,7 +88,7 @@ class FaqsController extends Controller
 
         $page_meta = $current_location = Location::find($id);
 
-        return view('faq-location', compact('faq_locations', 'faqs', 'current_location', 'page_meta'));
+        return view('faq-location', compact('faqs', 'current_location', 'page_meta'));
     }
 
 
@@ -114,7 +101,7 @@ class FaqsController extends Controller
     public function show($id)
     {
         // Faq                               
-        $faq = Faq::find($id);
+        $faq = Faq::where('status', '1')->firstOrFail();
 
         return view('faq', compact('faq'));
     }

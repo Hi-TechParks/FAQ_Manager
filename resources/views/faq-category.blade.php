@@ -76,12 +76,12 @@
             <aside class="aside col-lg-3 order-lg-1">
               <ul class="nostyle faq-nav">
 
-                @foreach( $faq_categories as $faq_category )
-                <li class="@if( $faq_category->id == $current_category->id ) active @endif">
+                @foreach( $category_submenus as $category_submenu )
+                <li class="@if( $category_submenu->id == $current_category->id ) active @endif">
                   <div class="faq-nav__icon">
                     <i class="fas fa-exclamation-circle"></i>
                   </div>
-                  <a href="{{ URL('/faq/category/'.$faq_category->slug) }}">{{ $faq_category->title }}</a>
+                  <a href="{{ URL('/faq/category/'.$category_submenu->slug) }}">{{ $category_submenu->title }}</a>
                 </li>
                 @endforeach
                 
