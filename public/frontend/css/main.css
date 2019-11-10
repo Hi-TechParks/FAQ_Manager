@@ -12990,6 +12990,7 @@ ul.bullet-line > li:before {
   font-weight: 400;
   line-height: 1.2;
   color: inherit;
+  color: rgb(26, 26, 26);
 }
 .search__title.cd-headline.clip span {
   padding: 0px !important;
@@ -18404,10 +18405,32 @@ ul.social li a {
   border-radius: 0px 40px 40px 0px;
 }
 
+#toTop {
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    background: #269cda;
+    color: #fff;
+    font-size: 25px;
+    position: fixed;
+    bottom: 0;
+    right: 5px;
+    display: none;
+    z-index: 99999;
+}
+
 @media (max-width: 768.08px) {
   .location_search,
   .qustion_search {
     width: 100%;
     border-radius: 0px 0px 0px 0px;
+  }
+
+  #toTop {
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    font-size: 20px;
   }
 }

@@ -45,6 +45,9 @@
 
   </head>
   <body class="loading">
+
+    <div id='toTop'><span><i class="fas fa-arrow-alt-circle-up"></i></span></div>
+
     <div class="arcelia">
       <!-- header-->
       <header class="header text-inverse wow fadeIn">
