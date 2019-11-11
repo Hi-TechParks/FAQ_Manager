@@ -96,7 +96,7 @@
 
 
                 <select class="search__input location_search" name="location" id="location">
-                  <option value="">All Location</option>
+                  <option value="">Location</option>
                   @foreach($search_locations as $search_location)
                   <option value="{{ $search_location->id }}">{{ $search_location->title }}</option>
                   @endforeach
@@ -317,7 +317,7 @@
      jQuery('#search_result').hide();
 
      jQuery(document).ready(function(){
-        jQuery(document).on('keyup', '#question', function(e) {
+        jQuery(document).on('change keyup', '#question, #location', function(e) {
 
           // For Delay
           function timer(){
@@ -368,7 +368,7 @@
     </script>
 
 
-    <script type="text/javascript">
+    {{-- <script type="text/javascript">
      jQuery('#search_result').hide();
 
      jQuery(document).ready(function(){
@@ -377,7 +377,7 @@
           // For Delay
           function timer(){
 
-            alert(jQuery("#location option:selected").val());
+            // alert(jQuery("#location option:selected").val());
              e.preventDefault();
              $.ajaxSetup({
                 headers: {
@@ -420,7 +420,7 @@
 
         });
      });
-    </script>
+    </script> --}}
 
   </body>
 </html>

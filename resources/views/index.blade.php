@@ -30,8 +30,10 @@
 
                   @foreach( $faqs as $faq )
                   <div class="faq__item">
-                    <div class="faq__item-icon"></div>
-                    <div class="faq__item-title">{{ $faq->question }}</div>
+                    <div class="faq__item-title">
+                      {{ $faq->question }}
+                      <div class="faq__item-icon"></div>
+                    </div>
                     <div class="faq__item-body">
 
                       @if(!empty($faq->video_id))

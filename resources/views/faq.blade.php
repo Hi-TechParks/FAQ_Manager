@@ -64,7 +64,7 @@
                 @foreach( $category_submenus as $category_submenu )
                 <li>
                   <div class="categories-nav__icon">
-                    <i class="fas fa-folder-plus"></i>
+                    <i class="fas fa-exclamation-circle"></i>
                   </div>
                   <a href="{{ URL('/faq/category/'.$category_submenu->slug) }}">{{ $category_submenu->title }}</a>
                   <sup>{{ $category_submenu->faqs->count() }}</sup>

@@ -12998,6 +12998,7 @@ ul.bullet-line > li:before {
 @media (max-width: 768.08px) {
   .search__title {
     margin-bottom: .5em;
+    font-size: 18px;
   }
 }
 .search__form {
@@ -13824,7 +13825,7 @@ aside > ol.nostyle + ol.nostyle,
   -o-transition: all 0.2s ease-in-out;
   transition: all 0.2s ease-in-out;
   font-size: 16px;
-  color: #269cda;
+  color: #FF4D4D;
 }
 .video {
   position: relative;
@@ -14149,7 +14150,7 @@ aside > ol.nostyle + ol.nostyle,
   -o-transition: all 0.2s ease-in-out;
   transition: all 0.2s ease-in-out;
   font-size: 16px;
-  color: #269cda;
+  color: #FF4D4D;
 }
 .page404 {
   display: -webkit-box;
@@ -18307,6 +18308,13 @@ ul.social li a {
   overflow-y: scroll;
 }
 
+@media (max-width: 768.08px) {
+  .search__form #search_result {
+    max-height: 400px;
+    top: 140px;
+  }
+}
+
 .search__form #search_result li {
   float: left;
   width: 100%;
@@ -18398,6 +18406,19 @@ ul.social li a {
   float: left;
   width: 30%;
   border-radius: 40px 0px 0px 40px;
+  text-align: center;
+}
+
+.location_search option {
+  float: left;
+  color: rgb(51, 51, 51);
+  font-size: 20px;
+  line-height: 1.4;
+  font-weight: 400;
+  padding: 10px 25px;
+  box-sizing: border-box;
+  font-family: Poppins, sans-serif;
+  text-align: center;
 }
 
 .qustion_search {
