@@ -18456,3 +18456,9 @@ ul.social li a {
     font-size: 20px;
   }
 }
+
+
+.categories-nav__icon, 
+.faq-nav__icon {
+  display: none;
+}

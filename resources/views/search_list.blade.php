@@ -14,7 +14,7 @@
 
 @foreach($faqs as $faq)
 	<li>
-	    <a href="{{ route('single.faq.show', $faq->id) }}">
+	    <a href="{{ route('single.faq.show', [$faq->id]) }}">
 	      <div class="search_question">{{ $faq->question }}</div>
 	      <div class="search_answer">
 	      	{!! textShorten($faq->answer) !!}

@@ -101,7 +101,9 @@ class FaqsController extends Controller
     public function show($id)
     {
         // Faq                               
-        $faq_meta = $faq = Faq::where('status', '1')->firstOrFail();
+        $faq_meta = $faq = Faq::where('id', $id)
+                            ->where('status', '1')
+                            ->firstOrFail();
 
         return view('faq', compact('faq', 'faq_meta'));
     }

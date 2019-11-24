@@ -18,6 +18,57 @@ class SearchController extends Controller
      */
     public function index(Request $request)
     {
+      $search = $request->get('question');
+
+      // Search Question    
+      if($search != Null && !empty($search)){
+
+        $question = DB::table('faqs')
+
+        ->where(function($query) use ($search){
+            $query->where('faqs.question', 'LIKE', '%'.$search.'%');
+            $query->orWhere('faqs.answer', 'LIKE', '%'.$search.'%');
+        });
+
+        if(!empty($request->get('location'))){
+          $question->where('faqs.location_id', $request->get('location'));
+        }
+
+        $faqs = $question->where('faqs.status', '1')
+                ->orderBy('faqs.id', 'desc')
+                ->distinct('faqs.id')
+                ->take(15)
+                ->get();
+
+
+        // Data pass to view
+        $search_list = view('search_list',compact('faqs'))->render();
+
+
+        if(!empty($request->get('location'))){
+            // Increment Views
+            $locationKey = 'location_' . $request->get('location');
+
+            if (!Session::has($locationKey)) {
+                Location::where('id', $request->get('location'))->increment('views');
+                Session::put($locationKey, 1);
+            }
+        }
+
+      }
+
+      return response()->json(['values'=> $search_list]);
+    }
+
+
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function indexOld(Request $request)
+    {
       // Search Question    
       if($request->get('question') != Null && !empty($request->get('question'))){
 
@@ -42,6 +93,7 @@ class SearchController extends Controller
             $faqs = $answer->where('faqs.status', '1')
                     ->orderBy('faqs.id', 'desc')
                     ->unionAll($faqs_ques)
+                    ->distinct('faqs.id')
                     ->take(15)
                     ->get();
 
